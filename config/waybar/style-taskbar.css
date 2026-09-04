@@ -1,0 +1,42 @@
+window#waybar {
+    background: rgba(26, 26, 26, 0.8);
+    color: #e0e0e0;
+    border-radius: 10px;
+    margin: 6px;
+    border: 2px solid #9d4edd;
+    min-width: 1200px;
+}
+
+tooltip{
+    background: rgba(26, 26, 26, 0.8);
+    color: #e0e0e0;
+    border-radius: 10px;
+    margin-left: 100px;
+    border: 2px solid #70d9ad;
+}
+
+
+#taskbar{
+    min-width: 3px;
+}
+
+#taskbar button {
+    padding-left: 8px;
+    color: #9d4edd;
+    background: rgba(26, 26, 26, 0.8);
+    border-radius: 10px;
+
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 4px;
+    margin-right: 4px;
+
+    min-width: 3px;
+    border: 1px solid #9d4edd;
+}
+
+#taskbar button.focused {
+    color: #d8d8d8;
+    border-bottom: 2px solid #9d4edd;
+    font-weight: bold;
+}

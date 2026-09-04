@@ -1,0 +1,15 @@
+# Plik: ~/.config/wofi/config
+# Podstawowa konfiguracja wofi
+
+width=650                # szerokość okna w px
+height=400                # wysokość okna w px
+location=center           # gdzie się pojawia (center, top_left, itd.)
+show=drun                 # tryb domyślny - drun pokazuje aplikacje (.desktop)
+prompt=Szukaj...          # tekst w polu wyszukiwania
+filter_rate=100           # jak szybko filtruje wpisywany tekst (ms)
+allow_markup=true         # pozwala na formatowanie tekstu
+no_actions=true           # wyłącza dodatkowe akcje po prawym kliku
+insensitive=true          # ignoruje wielkość liter przy szukaniu
+allow_images=true         # pokazuje ikony aplikacji
+image_size=40             # rozmiar ikon
+gtk_dark=false             # wymusza ciemny motyw GTK

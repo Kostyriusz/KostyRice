@@ -1,0 +1,71 @@
+{
+    "height": 30,
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["clock", "mpris"],
+    "modules-right": ["cpu", "temperature", "memory", "pulseaudio", "network", "battery", "custom/power"],
+
+    
+    "margin-top": 4,
+    "margin-left": 5,
+    "margin-right": 5,
+
+
+    "mpris": {
+        "format": "🎵 {title} - {artist}",
+        "interval": 1,
+        "max-length": 40
+    },
+    "clock": {
+        "format": "  {:%H:%M   %d.%m.%Y}",
+        "interval": 1,
+        "tooltip-format": "{:%H:%M:%S   %A, %d.%m.%Y}"
+    },
+    "cpu": {
+        "format": " CPU:{usage}%",
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
+        "format": "Temp:{temperatureC}°C",
+        "critical-threshold": 80
+    },
+    "memory": {
+        "format": " RAM:{percentage}%"
+    },
+    "pulseaudio": {
+        "format": " Vol:{volume}%",
+        "format-muted": " ",
+        "on-click": "pavucontrol"
+    },
+    // ~/.config/waybar/config-main.jsonc
+    "network": {
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "interval": 5,
+        "format-disconnected": "Brak sieci",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "kitty -e fish -c wifi-connect"   // klik = otwiera terminal z iwctl (zamień "kitty" na swój terminal)
+    },
+    "battery": {
+        "format": "{icon}  {capacity}%",   // pokazuje ikonę + procent
+        "format-icons": [
+            "\uf244",  // pusta bateria (0-10%)
+            "\uf243",  // 10-30%
+            "\uf242",  // 30-50%
+            "\uf241",  // 50-70%
+            "\uf240"   // 70-100% pełna
+        ],
+        "format-charging": "{icon} {capacity}% ",  // dodatkowa ikonka pioruna jak się ładuje
+        "states": {
+            "warning": 30,   // poniżej 30% zmienia kolor na ostrzegawczy
+            "critical": 15   // poniżej 15% na krytyczny
+        }
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "~/.config/waybar/za.sh",
+        "tooltip": false
+    }
+}

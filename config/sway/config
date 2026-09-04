@@ -1,0 +1,67 @@
+# plik: ~/.config/sway/config
+
+# Dodaje zmienne środowiskowe i odpala dbus dla portali (wersja bezpieczna, bez "set")
+exec dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=sway WAYLAND_DISPLAY XDG_SESSION_TYPE
+
+### Zmienne ###
+#
+# Klawisz Logo (Super). Użyj Mod1 dla Alt.
+set $mod Mod1
+
+# Klawisze kierunkowe jak w vimie
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Domyślny launcher aplikacji
+set $menu wmenu-run
+
+### Konfiguracja wyjść (monitorów) ###
+#
+output * bg ~/.config/sway/wallpapers/tapeta3.jpg fill
+#
+# Przykład:
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# Nazwy swoich monitorów sprawdzisz komendą: swaymsg -t get_outputs
+
+### Konfiguracja bezczynności (idle) ###
+#
+# Przykład:
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# Blokuje ekran po 300s bezczynności, wygasza monitory po kolejnych 300s,
+# włącza je z powrotem po wznowieniu, blokuje też przed uśpieniem komputera.
+
+### Konfiguracja wejść (klawiatura/touchpad) ###
+#
+# Przykład:
+#   input type:touchpad {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+  input * {
+       xkb_layout pl 
+  }
+
+# Dołączenie dodatkowych plików configu
+include /etc/sway/config.d/*
+include ~/.config/sway/binds.conf
+include ~/.config/sway/colors.conf
+include ~/.config/sway/outputs.conf
+
+# Odpalenie dwóch instancji waybara w ustalonej kolejności (z opóźnieniem między nimi)
+exec_always pkill waybar; \
+    (waybar -c ~/.config/waybar/config-main.jsonc -s ~/.config/waybar/style.css &) ; \
+    sleep 0.7 && \
+    (waybar -c ~/.config/waybar/config-taskbar.jsonc -s ~/.config/waybar/style-taskbar.css &)
+
+# Agent polkit — okienka z prośbą o hasło (np. przy sudo w GUI)
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
