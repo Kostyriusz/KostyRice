@@ -62,6 +62,3 @@ exec_always pkill waybar; \
     (waybar -c ~/.config/waybar/config-main.jsonc -s ~/.config/waybar/style.css &) ; \
     sleep 0.7 && \
     (waybar -c ~/.config/waybar/config-taskbar.jsonc -s ~/.config/waybar/style-taskbar.css &)
-
-# Agent polkit — okienka z prośbą o hasło (np. przy sudo w GUI)
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
